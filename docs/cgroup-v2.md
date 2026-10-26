@@ -87,12 +87,14 @@ runc --systemd-cgroup run foo
 The container processes are executed in a cgroup like `/user.slice/user-$(id -u).slice/user@$(id -u).service/user.slice/runc-foo.scope`.
 
 容器进程将在类似下面的 Cgroup 路径中运行：
+```
 /sys/fs/cgroup/
 └── user.slice/
     └── user-1000.slice/
         └── user@1000.service/
             └── user.slice/
                 └── runc-foo.scope/
+```
 
 > 普通用户的容器并没有直接放在 /sys/fs/cgroup/ 根目录下，而是放在 systemd 为用户管理的层级中。
 
